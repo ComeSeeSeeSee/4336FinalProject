@@ -4,11 +4,18 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/TheaterServlet")
-public class TheaterServlet extends HttpServlet {
+@WebServlet("/paymentServlet")
+public class PaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        PrintWriter writer = response.getWriter();
+        writer.println("Payment finished");
+
+        //and redirect to the receipt page
+        request.getRequestDispatcher("receipt.jsp").forward(request,response);
 
     }
 

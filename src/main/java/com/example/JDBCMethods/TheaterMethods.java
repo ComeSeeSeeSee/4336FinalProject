@@ -20,20 +20,25 @@ public class TheaterMethods {
 
     private List<Theater> theaterList = new ArrayList<>();
 
-    public List<Theater> findAllTheatersByZipcodeFk( int idFk) throws SQLException {
-        getAllTheatersByZipcodeStatement = connection.prepareStatement("select * from theater where zipcode_id_fk = ?");
+    public List<Theater> findAllTheatersByZipcodeFk( int idFk)  {
+        try {
+            getAllTheatersByZipcodeStatement = connection.prepareStatement("select * from theater where zipcode_id_fk = ?");
+            getAllTheatersByZipcodeStatement.setInt(1,idFk);
+            ResultSet resultSet = getAllTheatersByZipcodeStatement.executeQuery();
 
-        getAllTheatersByZipcodeStatement.setInt(1,idFk);
-        ResultSet resultSet = getAllTheatersByZipcodeStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt(1);
+                String theaters = resultSet.getString(2);
 
-        while(resultSet.next()){
-            int id = resultSet.getInt(1);
-            String theaters = resultSet.getString(2);
+                theaterList.add(new Theater(id,theaters));
 
-            theaterList.add(new Theater(id,theaters));
-
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return theaterList;
+
     }
 
     private PreparedStatement findATheaterById;
@@ -50,7 +55,7 @@ public class TheaterMethods {
 
             return  new Theater(id1,theater1);
         }
-
+        connection.close();
         return null;
     }
 

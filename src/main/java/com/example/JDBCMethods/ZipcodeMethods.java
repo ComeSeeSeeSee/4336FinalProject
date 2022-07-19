@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author leozh
+ */
 public class ZipcodeMethods {
 
     private List<Zipcode> zipcodeList = new ArrayList<>();
@@ -37,11 +40,13 @@ public class ZipcodeMethods {
                 zipcode.setId(id);
                 zipcode.setZipcode(zipcodes);
                 zipcodeList.add(zipcode);
-
             }
+
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return zipcodeList;
     }
 
@@ -59,14 +64,11 @@ public class ZipcodeMethods {
             if(resultSet1.next()){
                 Integer ids =resultSet1.getInt(1);
                 String zipcodes = resultSet1.getString(2);
-
-
                 zipcode.setId(ids);
                 zipcode.setZipcode(zipcodes);
-
                 return zipcode;
             }
-
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
