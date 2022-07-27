@@ -1,6 +1,6 @@
 
-create database jpastudybd2;
-use jpastudydb2;
+create database moviedb;
+use moviedb;
 
 -- auto-generated definition
 create table zipcode
