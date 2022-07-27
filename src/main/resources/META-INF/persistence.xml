@@ -1,41 +1,41 @@
-<persistence version="2.2"
-             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-    http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
->
-  <persistence-unit name="jpaexample">
+<!--<persistence version="2.2"-->
+<!--             xmlns="http://xmlns.jcp.org/xml/ns/persistence"-->
+<!--             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence-->
+<!--    http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"-->
+<!--&gt;-->
+<!--  <persistence-unit name="jpaexample">-->
 
-    <class>com.example.entities.Zipcode</class>
+<!--    <class>com.example.entities.Zipcode</class>-->
 
 
-<!--      <class>com.example.springwebtry1.servlet.Author</class>-->
-<!--    <class>com.example.springwebtry1.servlet.Book</class>-->
-<!--    <class>com.example.springwebtry1.servlet.Book</class>-->
-<!--      <class>com.example.springwebtry1.servlet.Bookeverything</class>-->
+<!--&lt;!&ndash;      <class>com.example.springwebtry1.servlet.Author</class>&ndash;&gt;-->
+<!--&lt;!&ndash;    <class>com.example.springwebtry1.servlet.Book</class>&ndash;&gt;-->
+<!--&lt;!&ndash;    <class>com.example.springwebtry1.servlet.Book</class>&ndash;&gt;-->
+<!--&lt;!&ndash;      <class>com.example.springwebtry1.servlet.Bookeverything</class>&ndash;&gt;-->
 
-      <properties>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpastudydb2"/>
-<!--      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/cardb"/>-->
-<!--      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/persondb"/>-->
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.password" value="123456"/>
-      <property name="hibernate.show_sql" value = "true" />
-      <property name="hibernate.format_sql" value = "true" />
+<!--      <properties>-->
+<!--      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpastudydb2"/>-->
+<!--&lt;!&ndash;      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/cardb"/>&ndash;&gt;-->
+<!--&lt;!&ndash;      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/persondb"/>&ndash;&gt;-->
+<!--      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />-->
+<!--      <property name="javax.persistence.jdbc.user" value="root"/>-->
+<!--      <property name="javax.persistence.jdbc.password" value="123456"/>-->
+<!--      <property name="hibernate.show_sql" value = "true" />-->
+<!--      <property name="hibernate.format_sql" value = "true" />-->
 
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <!--
-      <property name="javax.persistence.query.timeout" value="99"/>
-      <property name="javax.persistence.lock.timeout" value="99"/>
-      <shared-cache-mode>ALL</shared-cache-mode>
+<!--      <property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+<!--      &lt;!&ndash;-->
+<!--      <property name="javax.persistence.query.timeout" value="99"/>-->
+<!--      <property name="javax.persistence.lock.timeout" value="99"/>-->
+<!--      <shared-cache-mode>ALL</shared-cache-mode>-->
 
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
-      <property name="javax.persistence.sql-load-script-source" value="table-records.sql" />
-      -->
-    </properties>
+<!--      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />-->
+<!--      <property name="javax.persistence.sql-load-script-source" value="table-records.sql" />-->
+<!--      &ndash;&gt;-->
+<!--    </properties>-->
 
-  </persistence-unit>
+<!--  </persistence-unit>-->
 
-</persistence>
+<!--</persistence>-->

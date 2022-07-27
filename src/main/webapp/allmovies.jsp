@@ -20,6 +20,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>TimePeriod</th>
+        <th>Price</th>
         <th>Confirm</th>
     </tr>
 
@@ -29,6 +30,7 @@
             <td>${movie.name}</td>
             <td>${movie.description}</td>
             <td>${movie.timePeriod}</td>
+            <td>$10</td>
             <td><a href="/MovieProject/paymentServlet">purchase</a></td>
         </tr>
     </c:forEach>

@@ -14,12 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
+ * http://localhost:8080/MovieProject/zipcodeServlet
  * @author leozh
  */
 @WebServlet("/zipcodeServlet")
@@ -33,10 +31,9 @@ public class ZipcodeServlet extends HttpServlet {
 
         int num =0;
 
-        List<Zipcode> allZipcodes = zipcodeMethods.findAllZipcodes();
+        Set<Zipcode> allZipcodes = zipcodeMethods.findAllZipcodes();
 
 
-//        List<Zipcode> zipcodes = Collections.unmodifiableList(allZipcodes);
 
         request.setAttribute("zipcodeList",allZipcodes);
         System.out.println(allZipcodes.size());

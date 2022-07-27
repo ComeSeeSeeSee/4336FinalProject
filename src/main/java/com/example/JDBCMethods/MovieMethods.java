@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MovieMethods {
 
@@ -18,10 +20,11 @@ public class MovieMethods {
 
     private PreparedStatement getAllTheatersByZipcodeStatement;
 
-    private List<Movie> moviesList = new ArrayList<>();
 
 
-    public List<Movie> findAllMoviesByTheaterFk(int idFk){
+    public Set<Movie> findAllMoviesByTheaterFk(int idFk){
+
+        Set<Movie> set = new LinkedHashSet<>();
 
         try {
             getAllTheatersByZipcodeStatement = connection.prepareStatement("select * from movie where theater_id_fk = ?");
@@ -35,14 +38,14 @@ public class MovieMethods {
                 String description = resultSet.getString(3);
                 String timePeriod = resultSet.getString(4);
 
-                moviesList.add(new Movie(id,name,description,timePeriod));
+                set.add(new Movie(id,name,description,timePeriod));
             }
-            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return moviesList;
+        return set;
     }
 
 
@@ -60,7 +63,7 @@ public class MovieMethods {
             return new Movie(id1,name,description,timePeriod);
 
         }
-        connection.close();
+
         return null;
     }
 

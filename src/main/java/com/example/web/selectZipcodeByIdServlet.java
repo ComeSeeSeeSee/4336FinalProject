@@ -10,6 +10,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+
 /**
  * http://localhost:8080/MovieProject/zipcodeServlet
  * @author leozh
@@ -23,7 +25,7 @@ public class selectZipcodeByIdServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        List<Theater> allTheatersByZipcodeFk = theaterMethods.findAllTheatersByZipcodeFk(Integer.parseInt(id));
+        Set<Theater> allTheatersByZipcodeFk = theaterMethods.findAllTheatersByZipcodeFk(Integer.parseInt(id));
         request.setAttribute("allTheatersByZipcodeFk",allTheatersByZipcodeFk);
 
 //        Zipcode zipcodeById = zipcodeMethods.findZipcodeById(Integer.parseInt(id));

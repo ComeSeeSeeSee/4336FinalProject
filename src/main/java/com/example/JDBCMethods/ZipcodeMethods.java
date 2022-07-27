@@ -4,16 +4,12 @@ import com.example.entities.Zipcode;
 import com.example.utils.InitializeJdbcUtils;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author leozh
  */
 public class ZipcodeMethods {
-
-    private List<Zipcode> zipcodeList = new ArrayList<>();
-    private List<String> listzip = new ArrayList<>();
 
 
     private PreparedStatement getAllZipCodeStatement;
@@ -25,8 +21,8 @@ public class ZipcodeMethods {
 
 
 
-    public List<Zipcode> findAllZipcodes() {
-
+    public Set<Zipcode> findAllZipcodes() {
+        Set<Zipcode> set = new LinkedHashSet<>();
         try {
             getAllZipCodeStatement = connection.prepareStatement("select * from zipcode");
             ResultSet allZipCodeSet = getAllZipCodeStatement.executeQuery();
@@ -39,16 +35,19 @@ public class ZipcodeMethods {
                 Zipcode zipcode = new Zipcode();
                 zipcode.setId(id);
                 zipcode.setZipcode(zipcodes);
-                zipcodeList.add(zipcode);
+
+                set.add(zipcode);
+
             }
 
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return zipcodeList;
+        return set;
     }
+
+
+
 
     private PreparedStatement getZipCodeByIdStatement;
 
@@ -68,7 +67,7 @@ public class ZipcodeMethods {
                 zipcode.setZipcode(zipcodes);
                 return zipcode;
             }
-            connection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -13,7 +13,8 @@ public class InitializeJdbcUtils {
     public InitializeJdbcUtils() {
         try {
             System.out.println("Driver loaded");
-            String connectionString = "jdbc:mysql://localhost:3306/jpastudydb2";
+//            String connectionString = "jdbc:mysql://localhost:3306/jpastudydb2";
+            String connectionString = "jdbc:mysql://localhost:3306/moviedb";
             // Establish a connection
             connection = DriverManager.getConnection(connectionString, "root","123456");
             System.out.println("Database connected");
@@ -24,7 +25,7 @@ public class InitializeJdbcUtils {
     }
 
 
-    public  Connection getConnection() {
+    public Connection getConnection() {
         return connection;
     }
 }
