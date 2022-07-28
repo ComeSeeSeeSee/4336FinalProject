@@ -1,6 +1,6 @@
 
-create database jpastudybd2;
-use jpastudydb2;
+create database moviedb;
+use moviedb;
 
 -- auto-generated definition
 create table zipcode
@@ -26,15 +26,16 @@ create table theater
 );
 
 insert into theater(id, theater_name, zipcode_id_fk) VALUES
-(1,'Cinemark Central 75075 ',1),
-(2,'AMC Firewheel 18 75075 ',1),
-(3,'Alamo Drafthouse Cinema 75075',1),
-(4,'Drafthouse Cinema 75040',2),
-(5,'AMC Cinema  75040',2),
-(6,'Central Cinema 75040',2),
-(7,'Drafthouse Cinema 75080',3),
-(8,'Firewheel 75080',3),
-(9,'Cinemark 75080',3);
+                                                         (1,'Cinemark Central ',1),
+                                                         (2,'AMC Firewheel 18 ',1),
+                                                         (3,'Alamo Drafthouse Cinema ',1),
+                                                         (4,'Turner Cinema',2),
+                                                         (5,'Cinemark Music City Mall and XD',2),
+                                                         (6,'BlanketTop Theater',2),
+                                                         (7,'Moviehouse',3),
+                                                         (8,'Firewheel Cinema',3),
+                                                         (9,'Cinemark Cinema',3);
+
 
 
 -- auto-generated definition
