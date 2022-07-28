@@ -15,21 +15,41 @@
 
 
 <body>
+<h2>Find theater by zipcode</h2>
+<form action="/MovieProject/zipcodeServlet" method="post" >
+    Please type zipcode:<input type="text" name="keyword" id="keyword">
+    <input type="submit" value="click to search">
+</form>
 
-<table border="1" cellspacing="0" width="80%">
-    <tr>
-        <th>ID</th>
-        <th>Zipcode</th>
-        <th>Confirm</th>
-    </tr>
+<a href="/MovieProject/zipcodeServlet"> <input type="submit" value="Show all zipcodes"> </a>
 
-    <c:forEach items="${zipcodeList}" var="zipcode" varStatus="status">
-        <tr align="center">
-            <td>${status.count}</td>
-            <td>${zipcode.zipcode}</td>
-            <td><a href="/MovieProject/selectZipcodeByIdServlet?id=${zipcode.id}">select</a></td>
-        </tr>
-    </c:forEach>
+
+<%--<table border="1" cellspacing="0" width="80%">--%>
+<%--    <tr>--%>
+<%--        <th>ID</th>--%>
+<%--        <th>Zipcode</th>--%>
+<%--        <th>Confirm</th>--%>
+<%--    </tr>--%>
+
+<%--    <c:forEach items="${zipcodeList}" var="zipcode" varStatus="status">--%>
+<%--        <tr align="center">--%>
+<%--            <td>${status.count}</td>--%>
+<%--            <td>${zipcode.zipcode}</td>--%>
+<%--            <td><a href="/MovieProject/selectZipcodeByIdServlet?id=${zipcode.id}">select</a></td>--%>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+
+<%--</table>--%>
+
+<%--    <c:forEach items="${zipcodeList}" var="zipcode" varStatus="status">--%>
+<%--        <tr align="center">--%>
+<%--            <td>${status.count}</td>--%>
+<%--            <td>${zipcode.zipcode}</td>--%>
+<%--            <td><a href="/MovieProject/selectZipcodeByIdServlet?id=${zipcode.id}">select</a></td>--%>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+
+
 
 <%--    <%--%>
 <%--        List<Zipcode> zipcodeList = (List<Zipcode>)request.getAttribute("zipcodeList");--%>
@@ -50,13 +70,13 @@
 
 
 
-</table>
+
 
 <script>
-    // document.getElementById("add").onclick = function (){
-    //     location.href = "jsp";
-    // }
-
+    var errori ='<%=request.getParameter("error")%>'
+    if(errori=='yes'){
+        alert("Zipcode format incorrect！");
+    }
 </script>
 
 

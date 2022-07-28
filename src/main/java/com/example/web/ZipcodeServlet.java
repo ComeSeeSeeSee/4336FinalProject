@@ -1,6 +1,7 @@
 package com.example.web;
 
 
+import com.example.JDBCMethods.MovieMethods;
 import com.example.JDBCMethods.ZipcodeMethods;
 import com.example.entities.Zipcode;
 import com.example.repos.ZipcodeRepository;
@@ -15,8 +16,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
+ * To access the program
+ * http://localhost:8080/MovieProject/zipcode.jsp
+ *
  * http://localhost:8080/MovieProject/zipcodeServlet
  * @author leozh
  */
@@ -40,8 +46,8 @@ public class ZipcodeServlet extends HttpServlet {
 
 
 
-        request.getRequestDispatcher("/zipcode.jsp").forward(request,response);
-
+        request.getRequestDispatcher("/allzipcodes.jsp").forward(request,response);
+        return;
 
 //        //2nd get user input zipcode
 //        int zipcodeId = Integer.valueOf(request.getParameter("zipcodeId"));
@@ -54,9 +60,39 @@ public class ZipcodeServlet extends HttpServlet {
 
     }
 
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doGet(request, response);
+
+        String zipcode = request.getParameter("keyword");
+
+        String regex = "^[0-9]{5}(?:-[0-9]{4})?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(zipcode);
+        if(!matcher.matches()){
+            System.out.println("wrong");
+
+            request.setAttribute("error_msg1","Zipcode format incorrect, zipcode has to be 5 digits");
+            request.getRequestDispatcher("/zipcodeError.jsp").forward(request,response);
+            return;
+        }
+
+        Zipcode zipcodeByZipcode = zipcodeMethods.findZipcodeByZipcode(zipcode);
+
+        System.out.println(zipcodeByZipcode);
+        if(zipcodeByZipcode.getZipcode()==null){
+            System.out.println("null");
+            request.setAttribute("error_msg2","Cannot find any theaters in this zipcode");
+            request.getRequestDispatcher("/zipcodeError.jsp").forward(request,response);
+            return;
+        }
+
+        Set<Zipcode> allZipcodes = new HashSet<>();
+        allZipcodes.add(zipcodeByZipcode);
+        request.setAttribute("zipcodeList",allZipcodes);
+        request.getRequestDispatcher("/allzipcodes.jsp").forward(request,response);
+        return;
     }
 
 

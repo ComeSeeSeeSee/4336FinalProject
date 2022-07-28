@@ -25,6 +25,12 @@ public class selectZipcodeByIdServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+
+        Zipcode zipcodeById = zipcodeMethods.findZipcodeById(Integer.parseInt(id));
+        String zipcode = zipcodeById.getZipcode();
+        request.setAttribute("zipcode", zipcode);
+
+
         Set<Theater> allTheatersByZipcodeFk = theaterMethods.findAllTheatersByZipcodeFk(Integer.parseInt(id));
         request.setAttribute("allTheatersByZipcodeFk",allTheatersByZipcodeFk);
 
@@ -34,6 +40,7 @@ public class selectZipcodeByIdServlet extends HttpServlet {
 
 
         request.getRequestDispatcher("/alltheaters.jsp").forward(request,response);
+        return;
 
     }
 

@@ -31,7 +31,7 @@
             <td>${movie.description}</td>
             <td>${movie.timePeriod}</td>
             <td>$10</td>
-            <td><a href="/MovieProject/paymentServlet">purchase</a></td>
+            <td><a href="/MovieProject/payment.html">purchase</a></td>
         </tr>
     </c:forEach>
 

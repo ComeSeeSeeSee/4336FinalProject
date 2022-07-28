@@ -5,6 +5,8 @@ import com.example.utils.InitializeJdbcUtils;
 
 import java.sql.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author leozh
@@ -56,9 +58,36 @@ public class ZipcodeMethods {
 
         Zipcode zipcode = new Zipcode();
         try {
-            getZipCodeByIdStatement = connection.prepareStatement("select * from zipcode  where id = ?");
-            getZipCodeByIdStatement.setInt(1,id);
-            ResultSet resultSet1 = getZipCodeByIdStatement.executeQuery();
+            getZipCodeByZipcode = connection.prepareStatement("select * from zipcode  where id = ?");
+            getZipCodeByZipcode.setInt(1,id);
+            ResultSet resultSet1 = getZipCodeByZipcode.executeQuery();
+
+            if(resultSet1.next()){
+                Integer ids =resultSet1.getInt(1);
+                String zipcodes = resultSet1.getString(2);
+                zipcode.setId(ids);
+                zipcode.setZipcode(zipcodes);
+                return zipcode;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return zipcode;
+    }
+
+
+    private PreparedStatement getZipCodeByZipcode;
+
+
+    public Zipcode findZipcodeByZipcode(String zip) {
+        Zipcode zipcode = new Zipcode();
+        try {
+            getZipCodeByZipcode = connection.prepareStatement("select * from zipcode  where zipcode = ?");
+            getZipCodeByZipcode.setString(1,zip);
+            ResultSet resultSet1 = getZipCodeByZipcode.executeQuery();
 
             if(resultSet1.next()){
                 Integer ids =resultSet1.getInt(1);
@@ -88,8 +117,24 @@ public class ZipcodeMethods {
 
         System.out.println("*********************");
 
-        Zipcode zipcodeById = zipcodeMethods.findZipcodeById(2);
+        Zipcode zipcodeById = zipcodeMethods.findZipcodeByZipcode("75075");
         System.out.println(zipcodeById);
+
+
+//        String zipcode="12354";
+//        String regex = "^[0-9]{5}(?:-[0-9]{4})?$";
+//
+//        Pattern pattern = Pattern.compile(regex);
+//
+//        Matcher matcher = pattern.matcher(zipcode);
+//        System.out.println(matcher.matches());
+
+
+        String creditCard = "1234567890123456";
+        String regex = "^\\d{16}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(creditCard);
+        System.out.println(matcher.matches());
 
 
     }

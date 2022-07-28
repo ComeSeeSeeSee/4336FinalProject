@@ -14,12 +14,15 @@
 
 <body>
 
+<form action="/MovieProject/paymentServlet" method="post" >
+    Please type your credit card number:
+    <div id="errorMsg" style="color: red">${error_msg1}</div>
+    <input type="text" name="keyword" id="keyword">
+    <input type="submit" value="click to Pay">
+</form>
 
-<table >
 
 
-
-</table>
 
 </body>
 
